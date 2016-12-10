@@ -11,13 +11,17 @@
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.15.2",
-    "chai": "^3.5.0",
-    "chai-http": "^3.0.0",
     "cors": "^2.8.1",
     "express": "^4.14.0",
-    "istanbul": "^0.4.5",
-    "mocha": "^3.2.0",
     "sequelize": "^3.27.0",
     "sqlite3": "^3.1.8"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-http": "^3.0.0",
+    "coveralls": "^2.11.15",
+    "istanbul": "^0.4.5",
+    "mocha": "^3.2.0",
+    "mocha-lcov-reporter": "^1.2.0"
   }
 }

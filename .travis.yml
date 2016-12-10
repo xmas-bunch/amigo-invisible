@@ -3,8 +3,9 @@ branches:
   only:
     master
 
+# Language and commands
 language: node_js
 node_js:
   - "7"
 after_success:
-  - coveralls
+  - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
