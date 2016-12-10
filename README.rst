@@ -2,9 +2,10 @@
 Amigo Invisible
 ===============
 
-.. image:: https://img.shields.io/pypi/l/sonarqube-api.svg :target: http://www.opensource.org/licenses/MIT
-.. image:: https://img.shields.io/travis/kako-nawao/amigo-invisible.svg :target: https://travis-ci.org/kako-nawao/amigo-invisible
-.. image:: https://img.shields.io/coveralls/kako-nawao/amigo-invisible.svg :target: https://coveralls.io/github/kako-nawao/amigo-invisible
+.. image:: https://img.shields.io/travis/xmas-bunch/amigo-invisible.svg
+  :target: https://travis-ci.org/xmas-bunch/amigo-invisible
+.. image:: https://img.shields.io/coveralls/xmas-bunch/amigo-invisible.svg
+  :target: https://coveralls.io/github/xmas-bunch/amigo-invisible
 
 An application that lets you determine to whom you need to give a gift.
 
