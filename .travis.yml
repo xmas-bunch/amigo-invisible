@@ -1,4 +1,11 @@
+# Branch definition: only build master and PRs
+branches:
+  only:
+    master
+
+# Language and commands
 language: node_js
 node_js:
-  - "6"
   - "7"
+after_success:
+  - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
