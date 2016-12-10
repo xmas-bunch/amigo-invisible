@@ -4,7 +4,7 @@
   "description": "La gilada para saber a quien le tenes que comprar el regalo",
   "main": "server.js",
   "scripts": {
-    "test": "mocha service/test",
+    "test": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha service/test",
     "start": "node service/server.js"
   },
   "author": "xmas-bunch",
@@ -15,6 +15,7 @@
     "chai-http": "^3.0.0",
     "cors": "^2.8.1",
     "express": "^4.14.0",
+    "istanbul": "^0.4.5",
     "mocha": "^3.2.0",
     "sequelize": "^3.27.0",
     "sqlite3": "^3.1.8"
