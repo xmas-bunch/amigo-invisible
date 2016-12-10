@@ -1,0 +1,22 @@
+{
+  "name": "amigo-invisible",
+  "version": "0.0.1",
+  "description": "La gilada para saber a quien le tenes que comprar el regalo",
+  "main": "server.js",
+  "scripts": {
+    "test": "mocha service/test",
+    "start": "node service/server.js"
+  },
+  "author": "xmas-bunch",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "chai": "^3.5.0",
+    "chai-http": "^3.0.0",
+    "cors": "^2.8.1",
+    "express": "^4.14.0",
+    "mocha": "^3.2.0",
+    "sequelize": "^3.27.0",
+    "sqlite3": "^3.1.8"
+  }
+}

@@ -1,0 +1,14 @@
+const session = require('./session');
+const users = require('./users');
+const gifts = require('./gifts');
+
+function makeCoffee (req, res) {
+  res.status(418).json({error: "'I'm a teapot"});
+}
+
+exports.login = session.login;
+exports.getUsers = users.getUsers;
+exports.updateUser = users.updateUser;
+exports.getGifts = gifts.getGifts;
+exports.drawGift = gifts.drawGift;
+exports.makeCoffee = makeCoffee;
