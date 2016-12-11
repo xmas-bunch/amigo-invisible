@@ -4,8 +4,8 @@
   "description": "La gilada para saber a quien le tenes que comprar el regalo",
   "main": "server.js",
   "scripts": {
-    "build": "cd client && ../node_modules/react-scripts/bin/react-scripts.js build ./client && cd ..",
-    "test": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha service/test",
+    "build": "cd client && node ../node_modules/react-scripts/bin/react-scripts.js build ./client && cd ..",
+    "test": "node ./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha service/test",
     "start": "node service/server.js"
   },
   "author": "xmas-bunch",

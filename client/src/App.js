@@ -4,8 +4,6 @@ import Auth from './components/Auth';
 import Gifts from './components/Gifts';
 import './App.css';
 
-const serviceUrl = 'http://localhost:3000';
-
 class App extends Component {
   constructor(){
     super();
@@ -17,7 +15,7 @@ class App extends Component {
   }
 
   login(data){
-    axios.post(serviceUrl + '/session')
+    axios.post('/session', data)
     .then(resp => {
       this.setState({user: resp.data});
       console.log(this.state);
@@ -28,7 +26,7 @@ class App extends Component {
   }
 
   getGifts(){
-    axios.get(serviceUrl + '/gifts')
+    axios.get('/gifts')
     .then(resp => {
       this.setState({gifts: resp.data});
       console.log(this.state);
@@ -39,7 +37,7 @@ class App extends Component {
   }
 
   getUsers(){
-    axios.get(serviceUrl + '/users')
+    axios.get('/users')
     .then(resp => {
       this.setState({users: resp.data});
       console.log(this.state);
