@@ -12,20 +12,32 @@ An application that lets you determine to whom you need to give a gift.
 Running
 =======
 
-To execute the service (in dev mode), you can use::
+Install the environment::
 
-    npm start
+    npm install
 
-The first time you do it you should add the option to reset and bootstrap the database::
+Build the client application::
 
-    npm start reset-db
+    npm run build
+
+Note: Currently you need to re-build the client application after any change
+to the code. That sucks, I know. I promise I'll look into that.
+
+Execute the service::
+
+    npm run start
+
+Oh, the first time you do it you should add the option to reset and bootstrap
+the database::
+
+    npm run start reset-db
 
 Unit testing
 ============
 
 To run all unit tests::
 
-    npm test
+    npm run test
 
 Contributing
 ============

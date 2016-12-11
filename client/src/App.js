@@ -4,6 +4,8 @@ import Auth from './components/Auth';
 import Gifts from './components/Gifts';
 import './App.css';
 
+const serviceUrl = 'http://localhost:3000';
+
 class App extends Component {
   constructor(){
     super();
@@ -15,7 +17,7 @@ class App extends Component {
   }
 
   login(data){
-    axios.post('http://192.168.1.40:3000/session')
+    axios.post(serviceUrl + '/session')
     .then(resp => {
       this.setState({user: resp.data});
       console.log(this.state);
@@ -26,7 +28,7 @@ class App extends Component {
   }
 
   getGifts(){
-    axios.get('http://192.168.1.40:3000/gifts')
+    axios.get(serviceUrl + '/gifts')
     .then(resp => {
       this.setState({gifts: resp.data});
       console.log(this.state);
@@ -37,7 +39,7 @@ class App extends Component {
   }
 
   getUsers(){
-    axios.get('http://192.168.1.40:3000/users')
+    axios.get(serviceUrl + '/users')
     .then(resp => {
       this.setState({users: resp.data});
       console.log(this.state);
@@ -48,7 +50,6 @@ class App extends Component {
   }
 
   componentDidMount(){
-    this.getGifts();
     this.getUsers();
   }
 

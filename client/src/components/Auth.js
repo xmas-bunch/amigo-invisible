@@ -4,10 +4,14 @@ class Auth extends Component {
 
   login(e) {
     e.preventDefault();
-    this.props.login({
-        username: this.refs.username,
-        password: this.refs.password
-    })
+    if (!this.refs.username || !this.refs.password) {
+      alert('Usuario y password son requeridos');
+    } else {
+      this.props.login({
+          username: this.refs.username,
+          password: this.refs.password
+      })
+    }
   }
 
   render() {

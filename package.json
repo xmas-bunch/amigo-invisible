@@ -4,20 +4,21 @@
   "description": "La gilada para saber a quien le tenes que comprar el regalo",
   "main": "server.js",
   "scripts": {
+    "build": "cd client && ../node_modules/react-scripts/bin/react-scripts.js build ./client && cd ..",
     "test": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha service/test",
-    "start": "node service/server.js"
+    "start": "cd client && ../node_modules/react-scripts/bin/react-scripts.js build ./client && cd .. && node service/server.js"
   },
   "author": "xmas-bunch",
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.15.3",
     "body-parser": "^1.15.2",
     "cors": "^2.8.1",
     "express": "^4.14.0",
-    "sequelize": "^3.27.0",
-    "sqlite3": "^3.1.8",
-    "axios": "^0.15.3",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
+    "sequelize": "^3.27.0",
+    "sqlite3": "^3.1.8",
     "uuid": "^3.0.1"
   },
   "devDependencies": {
@@ -26,6 +27,7 @@
     "coveralls": "^2.11.15",
     "istanbul": "^0.4.5",
     "mocha": "^3.2.0",
-    "mocha-lcov-reporter": "^1.2.0"
+    "mocha-lcov-reporter": "^1.2.0",
+    "react-scripts": "0.7.0"
   }
 }
