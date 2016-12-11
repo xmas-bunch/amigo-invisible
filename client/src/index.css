@@ -5,3 +5,9 @@ body {
   background-color: #F0FFF0;
   color: #330000;
 }
+
+input, select {
+  padding: 6px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
