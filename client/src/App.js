@@ -52,14 +52,20 @@ class App extends Component {
   }
 
   render() {
+    var mainComponent;
+    if (this.state.user && this.state.user.isLoggedIn) {
+      mainComponent = (<Gifts gifts={this.state.gifts} />);
+    } else {
+      mainComponent = (<Auth user={this.state.user} users={this.state.users} login={this.login.bind(this)}/>);
+    }
+
     return (
       <div className="App">
         <div className="App-header">
           <img src="http://www.aqueduc.org/medias/billets/vignette1_happy_coaching_de_fin_d_annee.gif" className="App-logo" alt="logo" />
           <h2>Aguante la Navidad</h2>
         </div>
-        <Auth user={this.state.user} users={this.state.users} login={this.login.bind(this)}/>
-        <Gifts gifts={this.state.gifts} />
+        {mainComponent}
       </div>
     );
   }
