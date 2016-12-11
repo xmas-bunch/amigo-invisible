@@ -6,7 +6,7 @@
   "scripts": {
     "build": "cd client && ../node_modules/react-scripts/bin/react-scripts.js build ./client && cd ..",
     "test": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha service/test",
-    "start": "cd client && ../node_modules/react-scripts/bin/react-scripts.js build ./client && cd .. && node service/server.js"
+    "start": "node service/server.js"
   },
   "author": "xmas-bunch",
   "license": "MIT",
