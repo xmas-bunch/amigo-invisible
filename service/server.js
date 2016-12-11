@@ -5,8 +5,11 @@ const app = require('./app');
 const models = require('./models');
 const db = require('./db');
 
+var yaml_config = require('node-yaml-config');
+var config = yaml_config.load('./service/config/data-model.yml');
+
 var resetDB = process.argv.indexOf('reset-db') != -1;
-var user = users = ['Ale', 'Angie', 'Anto', 'Chechu', 'Cielo', 'Juampi', 'Kako', 'Kathy', 'Nico', 'Tuli']
+var user = users = config.database.users;
 
 db.sync({force: resetDB})
   .then(function () {

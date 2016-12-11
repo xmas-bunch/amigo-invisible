@@ -1,0 +1,3 @@
+default:
+  database:
+    users : ['Ale', 'Angie', 'Anto', 'Chechu', 'Cielo', 'Juampi', 'Kako', 'Kathy', 'Nico', 'Tuli', 'Omar']
