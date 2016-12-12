@@ -17,6 +17,7 @@ class App extends Component {
   login(data){
     axios.post('/session', data)
     .then(resp => {
+      resp.data.isLoggedIn = true;
       this.setState({user: resp.data});
       console.log(this.state);
     })
