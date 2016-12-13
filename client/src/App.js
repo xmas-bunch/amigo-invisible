@@ -14,16 +14,39 @@ class App extends Component {
     }
   }
 
+  setUser(id) {
+    var user = this.state.users.find(user => {
+      return user.id == id;
+    });
+    user.isLoggedIn = false;
+    this.setState({user: user});
+  }
+
   login(data){
+    data.username = this.state.user.username;
     axios.post('/session', data)
     .then(resp => {
       resp.data.isLoggedIn = true;
       this.setState({user: resp.data});
-      console.log(this.state);
     })
     .catch(err => {
       console.log(err);
+      alert(err.response.data.error);
     });
+  }
+
+  register(data) {
+    axios.put('/users/' + this.state.user.id, data)
+    .then(resp => {
+      var user = this.state.user;
+      user.hasPassword = true;
+      user.isLoggedIn = true;
+      this.setState({user: user});
+    })
+    .catch(err => {
+      console.log(err);
+      alert(err.response.data.error);
+    })
   }
 
   getGifts(){
@@ -34,6 +57,7 @@ class App extends Component {
     })
     .catch(err => {
       console.log(err);
+      alert(err.response.data.error);
     });
   }
 
@@ -45,6 +69,7 @@ class App extends Component {
     })
     .catch(err => {
       console.log(err);
+      alert(err.response.data.error);
     });
   }
 
@@ -55,9 +80,17 @@ class App extends Component {
   render() {
     var mainComponent;
     if (this.state.user && this.state.user.isLoggedIn) {
-      mainComponent = (<Gifts gifts={this.state.gifts} />);
+      mainComponent = (
+        <Gifts gifts={this.state.gifts} />
+      );
     } else {
-      mainComponent = (<Auth user={this.state.user} users={this.state.users} login={this.login.bind(this)}/>);
+      mainComponent = (
+        <Auth user={this.state.user} users={this.state.users}
+              login={this.login.bind(this)}
+              setUser={this.setUser.bind(this)}
+              register={this.register.bind(this)}
+        />
+      );
     }
 
     return (
