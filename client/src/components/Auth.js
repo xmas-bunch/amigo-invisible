@@ -2,35 +2,61 @@ import React, { Component } from 'react';
 
 class Auth extends Component {
 
+  setUser(e) {
+    e.preventDefault();
+    this.props.setUser(this.refs.username.value);
+  }
+
   login(e) {
     e.preventDefault();
-    if (!this.refs.username.value || !this.refs.password.value) {
-      alert('Usuario y password son requeridos');
-    } else {
-      this.props.login({
-          username: this.refs.username.value,
-          password: this.refs.password.value
-      })
-    }
+    this.props.login({
+        password: this.refs.password.value
+    })
+  }
+
+  register(e) {
+    e.preventDefault();
+    this.props.register({
+        password1: this.refs.password1.value,
+        password2: this.refs.password2.value
+    });
   }
 
   render() {
-    var usersOptions = this.props.users.map(user => {
+    var formContent;
+    if (this.props.user == null) {
+      var userOptions = this.props.users.map(user => {
+        return (
+          <option key={user.id} value={user.id}>{user.username}</option>
+        )
+      });
       return (
-        <option key={user.id} value={user.username}>{user.username}</option>
-      )
-    })
-    return (
-      <form onSubmit={this.login.bind(this)}>
-        <h3> Ingresar </h3>
-        <select placeholder="Usuario" ref="username">
-          <option>Usuario</option>
-          {usersOptions}
-        </select>
-        <input placeholder="Contraseña" ref="password" type="password" />
-        <button type="submit"><img src="http://www.myiconfinder.com/uploads/iconsets/20-20-154dd37596c4ba41b3179bc48db233f8-Christmas.png" height="12px" /></button>
-      </form>
-    )
+        <form onSubmit={this.setUser.bind(this)}>
+          <h3>Seleccione usuario</h3>
+          <select ref="username">
+            {userOptions}
+          </select>
+          <button type="submit">Confirmar usuario</button>
+        </form>
+      );
+    } else if (!this.props.user.hasPassword){
+      return (
+        <form onSubmit={this.register.bind(this)}>
+          <h3>Registramiento</h3>
+          <input placeholder="Contraseña" ref="password1" type="password" />
+          <input placeholder="Verificación" ref="password2" type="password" />
+          <button type="submit">Registrarse</button>
+        </form>
+      );
+    } else {
+      return (
+        <form onSubmit={this.login.bind(this)}>
+          <h3>Ingresamiento</h3>
+          <input placeholder="Contraseña" ref="password" type="password" />
+          <button type="submit">Ingresar</button>
+        </form>
+      );
+    }
   }
 }
 

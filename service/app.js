@@ -4,8 +4,8 @@ const bodyParser = require('body-parser');
 
 const app = express();
 app.use(cors());
-app.use(bodyParser.json());;
+app.use(bodyParser.json());
 app.use('/', express.static('client/build/'));
-app.use(require('./routes'))
+app.use(require('./routes'));
 
 module.exports = app;

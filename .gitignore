@@ -10,3 +10,6 @@
 # NPM environment
 /node_modules
 /npm-debug.log
+
+# JetBrains IDEs
+/.idea

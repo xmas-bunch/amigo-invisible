@@ -19,8 +19,8 @@ module.exports.getUsers = function (req, res) {
 }
 
 module.exports.updateUser = function (req, res) {
-  if (!req.body.username || !req.body.password1 || !req.body.password2) {
-    res.status(400).json({'error': 'username or password missing'});
+  if (!req.body.password1 || !req.body.password2) {
+    res.status(400).json({'error': 'password missing'});
   } else if (req.body.password1 != req.body.password2) {
     res.status(400).json({'error': 'password mismatch'});
   } else {
@@ -31,7 +31,6 @@ module.exports.updateUser = function (req, res) {
       if (!user) {
         throw new Error('user not found')
       } else {
-        user.username = req.body.username;
         user.password = req.body.password1;
         return user.save();
       }

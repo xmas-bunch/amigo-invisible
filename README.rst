@@ -16,28 +16,21 @@ Install the environment::
 
     npm install
 
-Build the client application::
-
-    npm run build
-
-Note: Currently you need to re-build the client application after any change
-to the code. That sucks, I know. I promise I'll look into that.
-
 Execute the service::
 
-    npm run start
+    npm start
 
 Oh, the first time you do it you should add the option to reset and bootstrap
 the database::
 
-    npm run start reset-db
+    npm start reset-db
 
 Unit testing
 ============
 
 To run all unit tests::
 
-    npm run test
+    npm test
 
 Contributing
 ============
