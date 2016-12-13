@@ -23,7 +23,7 @@ class Auth extends Component {
   }
 
   render() {
-    var formContent = 'potato';
+    var formContent;
     if (this.props.user == null) {
       var userOptions = this.props.users.map(user => {
         return (

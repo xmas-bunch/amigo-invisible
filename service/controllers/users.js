@@ -19,7 +19,6 @@ module.exports.getUsers = function (req, res) {
 }
 
 module.exports.updateUser = function (req, res) {
-  console.log(req.body);
   if (!req.body.password1 || !req.body.password2) {
     res.status(400).json({'error': 'password missing'});
   } else if (req.body.password1 != req.body.password2) {
