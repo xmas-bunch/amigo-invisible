@@ -7,12 +7,12 @@ chai.use(chaiHttp);
 
 describe('coffee controllers', function () {
 
-  it('should not know how to make coffee', function(done) {
-    chai.request(server)
-    .post('/coffee')
-    .end(function (err, res) {
-      res.should.have.status(418);
-      done();
+    it('should not know how to make coffee', function(done) {
+        chai.request(server)
+            .post('/coffee')
+            .end(function (err, res) {
+                res.should.have.status(418);
+                done();
+            });
     });
-  });
 });
