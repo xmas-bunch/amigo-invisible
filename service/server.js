@@ -5,13 +5,12 @@ const models = require('./models');
 const db = require('./db');
 
 const resetDB = process.argv.indexOf('reset-db') != -1;
-const users = ['Ale', 'Angie', 'Anto', 'Chechu', 'Cielo', 'Juampi', 'Kako', 'Kathy', 'Nico', 'Tuli'];
 
 db.sync({force: resetDB})
     .then(function () {
         console.log('Database ready...');
         if (resetDB) {
-            return models.bootstrapDB(users);
+            return models.bootstrapDB();
         } else {
             return true;
         }
