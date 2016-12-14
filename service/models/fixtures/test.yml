@@ -1,5 +1,5 @@
 users:
-  - {username: 'peter'}
-  - {username: 'mike'}
-  - {username: 'mary'}
-  - {username: 'jane'}
+  - username: 'peter'
+  - username: 'mike'
+  - username: 'mary'
+  - username: 'jane'
