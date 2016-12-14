@@ -40,19 +40,25 @@ class Auth extends Component {
             );
         } else if (!this.props.user.hasPassword){
             return (
-                <form onSubmit={this.register.bind(this)}>
+                <form onSubmit={this.register.bind(this)} onFocus={this.props.deleteMessage}>
                     <h3>Registramiento</h3>
                     <input placeholder="Contraseña" ref="password1" type="password" />
                     <input placeholder="Verificación" ref="password2" type="password" />
                     <button type="submit">Registrarse</button>
+
+                    <hr />
+                    <button type="button" onClick={this.props.logout.bind(this)}>Salir</button>
                 </form>
             );
         } else {
             return (
-                <form onSubmit={this.login.bind(this)}>
+                <form onSubmit={this.login.bind(this)} onFocus={this.props.deleteMessage}>
                     <h3>Ingresamiento</h3>
                     <input placeholder="Contraseña" ref="password" type="password" />
                     <button type="submit">Ingresar</button>
+
+                    <hr />
+                    <button type="button" onClick={this.props.logout.bind(this)}>Salir</button>
                 </form>
             );
         }

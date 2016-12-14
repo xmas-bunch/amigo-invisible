@@ -29,7 +29,7 @@ module.exports.getGifts = function (req, res) {
         })
         .catch(function (err) {
             if (err.message == 'user not found') {
-                res.status(404).json({error: err.message})
+                res.status(404).json({info: err.message})
             } else {
                 res.status(500).end();
                 console.log(err);
@@ -77,14 +77,14 @@ module.exports.drawGift = function (req, res) {
             }
         })
         .then(function (gift) {
-            res.status(201).json({'ok': 'gift drawn'});
+            res.status(201).json({info: 'gift drawn'});
             return true;
         })
         .catch(function (err) {
             if (err.message == 'gifts limit reached') {
-                res.status(400).json({'error': err.message});
+                res.status(400).json({info: err.message});
             } else if (err.message == 'user not found') {
-                res.status(404).json({error: err.message})
+                res.status(404).json({info: err.message})
             } else {
                 res.status(500).end();
                 console.log(err);

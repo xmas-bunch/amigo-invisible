@@ -44,7 +44,7 @@ describe('users controllers', function () {
             .send({username: 'mary'})
             .end(function (err, res) {
                 res.should.have.status(400);
-                res.body.error.should.equal('password missing');
+                res.body.info.should.equal('password missing');
                 done();
             })
     });
@@ -55,7 +55,7 @@ describe('users controllers', function () {
             .send({password1: '123', password2: '234'})
             .end(function (err, res) {
                 res.should.have.status(400);
-                res.body.error.should.equal('password mismatch');
+                res.body.info.should.equal('password mismatch');
                 done();
             })
     });
@@ -66,7 +66,7 @@ describe('users controllers', function () {
             .send({username: 'mary', password1: '123', password2: '123'})
             .end(function (err, res) {
                 res.should.have.status(404);
-                res.body.error.should.equal('user not found');
+                res.body.info.should.equal('user not found');
                 done();
             })
     });
@@ -77,7 +77,7 @@ describe('users controllers', function () {
             .send({password1: '123', password2: '123'})
             .then(function (res) {
                 res.should.have.status(200);
-                res.body.ok.should.equal('user updated');
+                res.body.info.should.equal('user updated');
                 return chai.request(server).get('/users');
             })
             .then(function (res) {

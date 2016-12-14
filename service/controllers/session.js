@@ -3,7 +3,7 @@ const models = require('../models');
 module.exports.login = function (req, res) {
     // Make sure both fields are passed
     if (!req.body.username || !req.body.password) {
-        res.status(400).json({'error': 'username and password required'})
+        res.status(400).json({info: 'username and password required'});
         return;
     }
 
@@ -16,7 +16,7 @@ module.exports.login = function (req, res) {
     })
         .then(function (user) {
             if (!user) {
-                res.status(403).json({error: 'invalid username or password'});
+                res.status(403).json({info: 'invalid username or password'});
             } else {
                 res.status(200).json({
                     id: user.id,

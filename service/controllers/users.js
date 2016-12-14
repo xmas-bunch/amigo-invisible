@@ -20,9 +20,9 @@ module.exports.getUsers = function (req, res) {
 
 module.exports.updateUser = function (req, res) {
     if (!req.body.password1 || !req.body.password2) {
-        res.status(400).json({'error': 'password missing'});
+        res.status(400).json({info: 'password missing'});
     } else if (req.body.password1 != req.body.password2) {
-        res.status(400).json({'error': 'password mismatch'});
+        res.status(400).json({info: 'password mismatch'});
     } else {
         models.User.findOne({
             where: {id: req.params.id}
@@ -36,11 +36,11 @@ module.exports.updateUser = function (req, res) {
                 }
             })
             .then(function (user) {
-                res.json({ok: 'user updated'});
+                res.json({info: 'user updated'});
             })
             .catch(function (err) {
                 if (err.message == 'user not found') {
-                    res.status(404).json({error: err.message});
+                    res.status(404).json({info: err.message});
                 } else {
                     console.log(err);
                 }
