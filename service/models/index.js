@@ -10,20 +10,20 @@ User.hasMany(Gift, {as: 'giftsToReceive'});
 
 function bootstrapDB (users) {
     return User.bulkCreate(users.map(name => {
-      return {username: name}
+        return {username: name}
     }))
-    .then(function (e) {
-      return User.findAll();
-    })
-    .then(function (users) {
-      var createGifts = users.map(user => {
-        return Gift.bulkCreate([
-          {recipientId: user.id, wasGiven: false},
-          {recipientId: user.id, wasGiven: false}
-        ])
-      });
-      return Sequelize.Promise.all(createGifts);
-    });
+        .then(function (e) {
+            return User.findAll();
+        })
+        .then(function (users) {
+            let createGifts = users.map(user => {
+                return Gift.bulkCreate([
+                    {recipientId: user.id, wasGiven: false},
+                    {recipientId: user.id, wasGiven: false}
+                ])
+            });
+            return Sequelize.Promise.all(createGifts);
+        });
 }
 
 exports.Gift = Gift;
