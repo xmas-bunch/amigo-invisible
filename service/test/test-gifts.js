@@ -13,7 +13,7 @@ describe('gifts controllers', function () {
     before(function (done) {
         db.sync({force: true})
             .then(function () {
-                return models.bootstrapDB(['peter', 'mike', 'mary', 'jane']);
+                return models.bootstrapDB();
             })
             .then(function () {
                 done();
@@ -76,7 +76,7 @@ describe('gifts controllers', function () {
     });
 
     it('should not draw if there are no gifts unassigned', function (done) {
-        // Set all gifts to a giver (not realistic, whatever)
+        // Set all gifts to a giver (not realistic but ideal testing scenario)
         models.Gift.update(
             {
                 giverId: 1
