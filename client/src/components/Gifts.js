@@ -7,26 +7,27 @@ class Gifts extends Component {
         this.props.getGifts();
     }
 
-    drawGift() {
-        this.props.drawGift();
-    }
-
-    logout() {
-        this.props.logout();
-    }
-
     render() {
-        let gifts = this.props.gifts.map(gift => {
-            return (
-                <Gift key={gift.id} giver={gift.giver} recipient={gift.recipient}/>
-            )
-        });
+        let mainContent;
+        if (this.props.gifts.length) {
+            mainContent = this.props.gifts.map(gift => {
+                return (
+                    <Gift key={gift.id} giver={gift.giver} recipient={gift.recipient}/>
+                )
+            });
+        } else {
+            mainContent = <p>Nadie. Sacá alguno.</p>;
+        }
         return (
             <div className='Gifts'>
-                <h3> Regalos </h3>
-                {gifts}
-                <button type="button" onClick={this.drawGift.bind(this)}>Sacar regalo</button>
-                <button type="button" onClick={this.logout.bind(this)}>Salir</button>
+                <h3>Regalos</h3>
+                <p>Le tenés que dar regalos a:</p>
+                {mainContent}
+                <hr />
+                <button type="button" onClick={this.props.drawGift.bind(this)}>Sacar regalo</button>
+
+                <hr />
+                <button type="button" onClick={this.props.logout.bind(this)}>Salir</button>
             </div>
         )
     }

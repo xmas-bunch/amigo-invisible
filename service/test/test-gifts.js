@@ -29,7 +29,7 @@ describe('gifts controllers', function () {
             .get('/users/456/gifts')
             .end(function (err, res) {
                 res.should.have.status(404);
-                res.body.error.should.equal('user not found');
+                res.body.info.should.equal('user not found');
                 done();
             });
     });
@@ -39,7 +39,7 @@ describe('gifts controllers', function () {
             .post('/users/456/gifts')
             .end(function (err, res) {
                 res.should.have.status(404);
-                res.body.error.should.equal('user not found');
+                res.body.info.should.equal('user not found');
                 done();
             });
     });
@@ -50,13 +50,13 @@ describe('gifts controllers', function () {
             .then(function (res) {
                 // First draw, OK
                 res.should.have.status(201);
-                res.body.ok.should.equal('gift drawn');
+                res.body.info.should.equal('gift drawn');
                 return chai.request(server).post('/users/1/gifts');
             })
             .then(function (res) {
                 // Second draw, OK
                 res.should.have.status(201);
-                res.body.ok.should.equal('gift drawn');
+                res.body.info.should.equal('gift drawn');
                 return chai.request(server).get('/users/1/gifts');
             })
             .then(function (res) {
@@ -69,7 +69,7 @@ describe('gifts controllers', function () {
                     .post('/users/1/gifts')
                     .end(function (err, res) {
                         res.should.have.status(400);
-                        res.body.error.should.equal('gifts limit reached');
+                        res.body.info.should.equal('gifts limit reached');
                         done();
                     });
             });

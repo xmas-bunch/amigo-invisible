@@ -21,6 +21,22 @@
   font-size: large;
 }
 
+.Message {
+  border: 1px solid;
+  width: 400px;
+  margin: auto;
+}
+
+.error {
+  background: pink;
+  color: darkred;
+}
+
+.info {
+  background: lightgreen;
+  color: darkgreen;
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }

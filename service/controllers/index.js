@@ -3,7 +3,7 @@ const users = require('./users');
 const gifts = require('./gifts');
 
 function makeCoffee (req, res) {
-    res.status(418).json({error: "Don't know how to make coffee"});
+    res.status(418).json({info: "Don't know how to make coffee"});
 }
 
 exports.login = session.login;

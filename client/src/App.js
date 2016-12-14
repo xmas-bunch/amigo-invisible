@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import Message from './components/Message';
 import Auth from './components/Auth';
 import Gifts from './components/Gifts';
 import './App.css';
@@ -11,12 +12,17 @@ class App extends Component {
         this.state = {
             users: [],
             user: null,
-            gifts: []
+            gifts: [],
+            message: null
         }
     }
 
     componentDidMount(){
         this.getUsers();
+    }
+
+    deleteMessage() {
+        this.setState({message: null});
     }
 
     getUsers(){
@@ -25,8 +31,7 @@ class App extends Component {
                 this.setState({users: resp.data});
             })
             .catch(err => {
-                console.log(err);
-                alert(err.response.data.error);
+                this.setState({message: err});
             });
     }
 
@@ -46,12 +51,12 @@ class App extends Component {
                 this.setState({user: resp.data});
             })
             .catch(err => {
-                console.log(err);
-                alert(err.response.data.error);
+                this.setState({message: err});
             });
     }
 
     logout() {
+        this.deleteMessage();
         this.setState({user: null});
     }
 
@@ -61,11 +66,13 @@ class App extends Component {
                 let user = this.state.user;
                 user.hasPassword = true;
                 user.isLoggedIn = true;
-                this.setState({user: user});
+                this.setState({
+                    user: user,
+                    message: {response: resp}
+                });
             })
             .catch(err => {
-                console.log(err);
-                alert(err.response.data.error);
+                this.setState({message: err});
             })
     }
 
@@ -75,8 +82,7 @@ class App extends Component {
                 this.setState({gifts: resp.data});
             })
             .catch(err => {
-                console.log(err);
-                alert(err.response.data.error);
+                this.setState({message: err});
             });
     }
 
@@ -86,8 +92,7 @@ class App extends Component {
                 this.getGifts();
             })
             .catch(err => {
-                console.log(err);
-                alert(err.response.data.error);
+                this.setState({message: err});
             })
     }
 
@@ -95,20 +100,20 @@ class App extends Component {
         let mainComponent;
         if (this.state.user && this.state.user.isLoggedIn) {
             mainComponent = (
-                <Gifts
-                    gifts={this.state.gifts}
-                    getGifts={this.getGifts.bind(this)}
-                    drawGift={this.drawGift.bind(this)}
-                    logout={this.logout.bind(this)}/>
+                <Gifts gifts={this.state.gifts}
+                       getGifts={this.getGifts.bind(this)}
+                       drawGift={this.drawGift.bind(this)}
+                       logout={this.logout.bind(this)}/>
             );
         } else {
             mainComponent = (
-                <Auth
-                    user={this.state.user} users={this.state.users}
-                    login={this.login.bind(this)}
-                    setUser={this.setUser.bind(this)}
-                    register={this.register.bind(this)}
-                />
+                <Auth user={this.state.user}
+                      users={this.state.users}
+                      login={this.login.bind(this)}
+                      setUser={this.setUser.bind(this)}
+                      register={this.register.bind(this)}
+                      deleteMessage={this.deleteMessage.bind(this)}
+                      logout={this.logout.bind(this)}/>
             );
         }
 
@@ -118,6 +123,8 @@ class App extends Component {
                 <img src="http://www.aqueduc.org/medias/billets/vignette1_happy_coaching_de_fin_d_annee.gif" className="App-logo" alt="logo" />
                 <h2>Aguante la Navidad</h2>
               </div>
+                <Message message={this.state.message}
+                         deleteMessage={this.deleteMessage.bind(this)}/>
                 {mainComponent}
             </div>
         );
