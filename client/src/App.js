@@ -23,7 +23,6 @@ class App extends Component {
         axios.get('/users')
             .then(resp => {
                 this.setState({users: resp.data});
-                console.log(this.state);
             })
             .catch(err => {
                 console.log(err);
@@ -74,7 +73,6 @@ class App extends Component {
         axios.get(`users/${this.state.user.id}/gifts`)
             .then(resp => {
                 this.setState({gifts: resp.data});
-                console.log(this.state.gifts);
             })
             .catch(err => {
                 console.log(err);
