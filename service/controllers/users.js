@@ -1,10 +1,10 @@
 const models = require('../models');
 
-module.exports.getUsers = function (req, res) {
+module.exports.getUsers = (req, res) => {
     return models.User.findAll({
         attributes: ['id', 'username', 'password'],
     })
-        .then(function (results) {
+        .then(results => {
             res.json(results.map(user => {
                 return {
                     id: user.id,
@@ -13,12 +13,12 @@ module.exports.getUsers = function (req, res) {
                 }
             }));
         })
-        .catch(function (err) {
+        .catch(err => {
             console.log(err)
         })
 };
 
-module.exports.updateUser = function (req, res) {
+module.exports.updateUser = (req, res) => {
     if (!req.body.password1 || !req.body.password2) {
         res.status(400).json({info: 'password missing'});
     } else if (req.body.password1 != req.body.password2) {
@@ -27,7 +27,7 @@ module.exports.updateUser = function (req, res) {
         models.User.findOne({
             where: {id: req.params.id}
         })
-            .then(function (user) {
+            .then(user => {
                 if (!user) {
                     throw new Error('user not found')
                 } else {
@@ -35,10 +35,10 @@ module.exports.updateUser = function (req, res) {
                     return user.save();
                 }
             })
-            .then(function (user) {
+            .then(user => {
                 res.json({info: 'user updated'});
             })
-            .catch(function (err) {
+            .catch(err => {
                 if (err.message == 'user not found') {
                     res.status(404).json({info: err.message});
                 } else {

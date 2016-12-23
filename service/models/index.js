@@ -13,14 +13,14 @@ Gift.belongsTo(User, {as: 'recipient', foreignKey: 'recipientId'});
 User.hasMany(Gift, {as: 'giftsToReceive'});
 
 
-function bootstrapDB () {
+const bootstrapDB = () => {
     let path = `${__dirname}/fixtures/${process.env.NODE_ENV}.yml`;
     let fixtures = yaml.safeLoad(fs.readFileSync(path, 'utf8'));
     return User.bulkCreate(fixtures.users)
-        .then(function (e) {
+        .then(e => {
             return User.findAll();
         })
-        .then(function (users) {
+        .then(users => {
             let createGifts = users.map(user => {
                 return Gift.bulkCreate([
                     {recipientId: user.id, wasGiven: false},
@@ -29,7 +29,7 @@ function bootstrapDB () {
             });
             return Sequelize.Promise.all(createGifts);
         });
-}
+};
 
 exports.Gift = Gift;
 exports.User = User;

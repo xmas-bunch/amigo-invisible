@@ -7,10 +7,10 @@ chai.use(chaiHttp);
 
 describe('coffee controllers', function () {
 
-    it('should not know how to make coffee', function(done) {
+    it('should not know how to make coffee', (done) => {
         chai.request(server)
             .post('/coffee')
-            .end(function (err, res) {
+            .end((err, res) => {
                 res.should.have.status(418);
                 done();
             });

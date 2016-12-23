@@ -1,6 +1,6 @@
 const models = require('../models');
 
-module.exports.login = function (req, res) {
+module.exports.login = (req, res) => {
     // Make sure both fields are passed
     if (!req.body.username || !req.body.password) {
         res.status(400).json({info: 'username and password required'});
@@ -14,7 +14,7 @@ module.exports.login = function (req, res) {
             password: req.body.password
         }
     })
-        .then(function (user) {
+        .then(user => {
             if (!user) {
                 res.status(403).json({info: 'invalid username or password'});
             } else {
@@ -26,7 +26,7 @@ module.exports.login = function (req, res) {
             }
             return true;
         })
-        .catch(function (err) {
+        .catch(err => {
             res.status(500);
             console.log(err);
         })

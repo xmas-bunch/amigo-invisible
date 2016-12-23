@@ -7,59 +7,61 @@ const should = chai.should();
 chai.use(chaiHttp);
 
 describe('login controller', function() {
-    this.timeout(10000);
+    // Increase timeout for model creation
+    this.timeout(3000);
 
-    before(function (done) {
+    before(done => {
         models.User.sync({force: true})
-            .then(function () {
+            .then(() => {
                 return models.User.create({
                     username: 'potato',
                     password: 'irish'
                 })
             })
-            .then(function () {
+            .then(() => {
                 done();
             })
-            .catch(function (err) {
+            .catch(err => {
+                console.log(err);
                 done();
             });
     });
 
-    it('should fail without username', function (done) {
+    it('should fail without username', done => {
         chai.request(server)
             .post('/session')
             .send({username: '', password: '123'})
-            .end(function (err, res) {
+            .end((err, res) => {
                 res.should.have.status(400);
                 done();
             })
     });
 
-    it('should fail without password', function (done) {
+    it('should fail without password', done => {
         chai.request(server)
             .post('/session')
             .send({username: 'peter', password: ''})
-            .end(function (err, res) {
+            .end((err, res) => {
                 res.should.have.status(400);
                 done();
             })
     });
 
-    it('should fail with invalid credentials', function (done) {
+    it('should fail with invalid credentials', done => {
         chai.request(server)
             .post('/session')
             .send({username: 'potato', password: 'french'})
-            .end(function (err, res) {
+            .end((err, res) => {
                 res.should.have.status(403);
                 done();
             })
     });
 
-    it('should succeed with valid credentials', function (done) {
+    it('should succeed with valid credentials', done => {
         chai.request(server)
             .post('/session')
             .send({username: 'potato', password: 'irish'})
-            .end(function (err, res) {
+            .end((err, res) => {
                 res.should.have.status(200);
                 res.body.username.should.equal('potato');
                 res.body.hasPassword.should.equal(true);

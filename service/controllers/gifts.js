@@ -1,14 +1,14 @@
 const models = require('../models');
 const gifts_limit = 2;
 
-module.exports.getGifts = function (req, res) {
+module.exports.getGifts = (req, res) => {
 
     models.User.findOne({
         where: {
             id: req.params.id
         }
     })
-        .then(function (user) {
+        .then(user => {
             if (!user) {
                 throw new Error('user not found');
             } else {
@@ -24,10 +24,10 @@ module.exports.getGifts = function (req, res) {
                 })
             }
         })
-        .then(function (results) {
+        .then(results => {
             res.json(results);
         })
-        .catch(function (err) {
+        .catch(err => {
             if (err.message == 'user not found') {
                 res.status(404).json({info: err.message})
             } else {
@@ -37,14 +37,14 @@ module.exports.getGifts = function (req, res) {
         })
 };
 
-module.exports.drawGift = function (req, res) {
+module.exports.drawGift = (req, res) => {
     let user;
     models.User.findOne({
         where: {
             id: req.params.id
         }
     })
-        .then(function (res) {
+        .then(res => {
             if (!res) {
                 throw new Error('user not found');
             }
@@ -55,7 +55,7 @@ module.exports.drawGift = function (req, res) {
                 }
             });
         })
-        .then(function (giftsToGive) {
+        .then(giftsToGive => {
             if (giftsToGive.length >= gifts_limit) {
                 throw new Error('gifts limit reached');
             } else {
@@ -67,7 +67,7 @@ module.exports.drawGift = function (req, res) {
                 })
             }
         })
-        .then(function (gifts) {
+        .then(gifts => {
             if (!gifts.length) {
                 throw new Error('no gifts unassigned');
             } else {
@@ -76,11 +76,11 @@ module.exports.drawGift = function (req, res) {
                 return gift.save();
             }
         })
-        .then(function (gift) {
+        .then(gift => {
             res.status(201).json({info: 'gift drawn'});
             return true;
         })
-        .catch(function (err) {
+        .catch(err => {
             if (err.message == 'gifts limit reached') {
                 res.status(400).json({info: err.message});
             } else if (err.message == 'user not found') {
